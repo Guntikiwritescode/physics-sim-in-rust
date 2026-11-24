@@ -1,6 +1,6 @@
-# rust-black-hole
+# Physics Sim
 
-A black hole, gravity and atoms simulator in Rust, in one window with two tabs.
+A black hole, gravity, and atoms simulator in Rust.
 
 ![the black hole tab](screenshot.png)
 
