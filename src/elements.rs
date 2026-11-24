@@ -2,8 +2,7 @@
 //! and their light (NIST Atomic Spectra Database lines, data/asd_lines.txt).
 //!
 //! Configurations: Z = 1-92 as NIST SRD 141 used them (data/nist_configurations.txt). Z = 93-118: PubChem's periodic table of electron
-//! configurations (pubchem.ncbi.nlm.nih.gov/periodic-table); from Mt (109) on these are predictions,
-//! no measurement exists.
+//! configurations (pubchem.ncbi.nlm.nih.gov/periodic-table).
 
 use crate::dft::{self, Grid, Shell};
 

@@ -113,7 +113,7 @@ pub fn hole(pos: DVec3, m: f64, spin: f64) -> Body {
     Body { pos: pos.into(), vel: [0.0; 3], mass: m, density: 1e18, color: [0.0; 3], glow: false, kind: Kind::Hole { spin }, shrink: 1.0 }
 }
 
-/// kavan010's black hole scene: Sagittarius A*-like hole (8.54e36 kg, spin 0.9) and two Sun-sized
+/// Black hole scene: Sagittarius A*-like hole (8.54e36 kg, spin 0.9) and two Sun-sized
 /// stars 4e11 m out on circular orbits, just outside the hole's Roche limit for a Sun (2.8e11 m).
 pub fn setup_black_hole() -> World {
     let m = 8.54e36;
@@ -131,10 +131,10 @@ pub fn setup_black_hole() -> World {
     w
 }
 
-/// kavan010's gravity_sim scenes (nbody.rs presets) at true size, the glowing star a real light.
-/// gravity_sim draws bodies at 1/30 of their size; here every length is 30x larger instead, speeds
-/// 1/sqrt(30) (orbits keep their shape, v ~ sqrt(GM/r)) and time runs 30^1.5 = 164x faster, so the
-/// picture and motion on screen match.
+/// The gravity scenes (nbody.rs presets) at true size, the glowing star a real light. The presets
+/// draw bodies at 1/30 of their size; here every length is 30x larger instead, speeds 1/sqrt(30)
+/// (orbits keep their shape, v ~ sqrt(GM/r)) and time runs 30^1.5 = 164x faster, so the picture
+/// and motion on screen match.
 pub const GRAV_SCALE: f64 = nbody::SIZE_RATIO;
 fn from_gravity_preset(bodies: Vec<Body>) -> World {
     let mut bodies = bodies;

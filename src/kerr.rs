@@ -1,7 +1,6 @@
 //! CPU copy of the black hole ray maths in rt_hole.wgsl (f64), for the accuracy tests against
 //! exact results (shadow edge, bending angle).
-//! Spinning (Kerr) black hole in Cartesian Kerr-Schild coordinates, following the equations
-//! in the GRay2 paper (Chan et al. 2018, ApJ 867, 59). Outgoing form (l_t = -1), so rays traced
+//! Spinning (Kerr) black hole in Cartesian Kerr-Schild coordinates, Hamiltonian form. Outgoing form (l_t = -1), so rays traced
 //! backwards from the camera cross the horizon smoothly.
 //! Units: r_s = 1, so the mass M = 0.5. Spin axis = +Z of these coordinates.
 //! Hamiltonian H = 1/2 g^{mu nu} p_mu p_nu with g^{mu nu} = eta - f l^mu l^nu.

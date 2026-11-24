@@ -1,7 +1,6 @@
 // Black holes inside the one renderer. Far from a hole, light bends by the weak-field formula
 // (trace() in rt.wgsl). Inside a sphere of GR_R Schwarzschild radii, the ray instead follows the
-// exact Kerr path (Cartesian Kerr-Schild coordinates, Hamiltonian form from GRay2, Chan et al.
-// 2018; CPU copy in kerr.rs),
+// exact Kerr path (Cartesian Kerr-Schild coordinates, Hamiltonian form; CPU copy in kerr.rs),
 // including the hot gas disk (thick, Doppler-shifted, lit by its own heat).
 //
 // A hole is stored as a big ball whose radius is the horizon, with mat = (a, inner disk edge,
@@ -237,8 +236,7 @@ fn gr_march(hi: u32, xw: vec3<f32>, dw: vec3<f32>) -> Hit {
     }
     var last = d;
     // For the swirl's anti-aliasing (swirl_keep): the size of the patch one pixel covers, taken
-    // as the pixel's angle times the distance gone (as in flat space; the lens's stretching and
-    // squeezing near the hole is left out).
+    // as the pixel's angle times the distance gone.
     // Which pixel counts: while the view turns or the camera moves by more than a window pixel a
     // frame, the clean-up keeps only a few frames, so the traced pixel (0.6 of it, as for the
     // stars); otherwise the window picture is built from many jittered traces, which already

@@ -1,26 +1,24 @@
-//! Gravity sim physics (from kavan010/gravity_sim). Every body pulls every other (Newton, run on
+//! Gravity sim physics. Every body pulls every other (Newton, run on
 //! all CPU cores), leapfrog steps. Touching bodies merge, bounce or shatter depending on how hard
 //! they hit; each keeps total mass and momentum. SI units.
 
 use rayon::prelude::*;
 
 pub const G: f64 = 6.6743e-11;
-/// Bodies are drawn and collide at 1/SIZE_RATIO of the size their density gives (gravity_sim's
-/// sizeRatio).
+/// Bodies are drawn and collide at 1/SIZE_RATIO of the size their density gives.
 pub const SIZE_RATIO: f64 = 30.0;
 /// Above this many bodies gravity uses the Barnes-Hut tree instead of the exact pair sum.
 pub const TREE_FROM: usize = 4096;
 
 /// Collision outcome by impact speed v compared with the pair's escape speed v_esc
-/// = sqrt(2 G (m1 + m2) / (r1 + r2)) (the measure Leinhardt & Stewart 2012 use):
+/// = sqrt(2 G (m1 + m2) / (r1 + r2)):
 /// v < v_esc: merge.  v_esc <= v < SHATTER_SPEED v_esc: bounce.  Faster: shatter.
-/// The published model has 8 outcomes; this keeps 3.
 pub const SHATTER_SPEED: f64 = 3.0;
-/// Bounciness (coefficient of restitution, as REBOUND's hard-sphere method): share of the
+/// Bounciness (coefficient of restitution): share of the
 /// approach speed along the line of centres kept after a bounce.
 pub const RESTITUTION: f64 = 0.5;
 /// A shatter makes one big remnant (half the mass) plus up to 6 equal pieces; pieces lighter
-/// than this merge instead (REBOUND's fragmentation module has a minimum fragment mass too).
+/// than this merge instead.
 pub const MIN_PIECE_KG: f64 = 1e19;
 /// Shatters stop (pairs merge instead) above this many bodies, so the count can't blow up.
 pub const MAX_BODIES: usize = 6000;
@@ -48,7 +46,7 @@ pub struct Body {
     pub color: [f32; 3],
     pub glow: bool,
     pub kind: Kind,
-    /// Drawn and collides at 1/shrink of its true size (SIZE_RATIO in gravity_sim's scene,
+    /// Drawn and collides at 1/shrink of its true size (SIZE_RATIO in the gravity scene,
     /// 1 in the true-size world).
     pub shrink: f64,
 }
@@ -363,8 +361,7 @@ impl World {
     }
 }
 
-/// gravity_sim's scene: a star and two planets (positions and masses from gravity_sim.cpp, in km)
-/// on circular orbits.
+/// The gravity scene: a star and two planets (positions in km) on circular orbits.
 pub fn preset_original() -> Vec<Body> {
     let star_m = 1.989e25;
     let planet_m = 5.97219e22;

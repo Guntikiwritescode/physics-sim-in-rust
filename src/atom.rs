@@ -1,4 +1,4 @@
-//! Hydrogen orbital sampler (from kavan010/Atoms, atom_realtime.cpp).
+//! Hydrogen orbital sampler.
 //! Picks electron positions with the probability |psi_nlm|^2 from the Schrodinger equation:
 //! r from r^2 R_nl(r)^2, theta from sin(theta) P_l^|m|(cos theta)^2, phi uniform (atomic units, a0 = 1),
 //! by associated Laguerre and Legendre recurrences. Positions are interpolated inside each table step.
@@ -193,7 +193,7 @@ pub fn m_chances(l: i32, m: i32, l2: i32) -> Vec<(i32, f64)> {
     v.into_iter().map(|(m2, x)| (m2, x / t)).collect()
 }
 
-/// Approximate colour of light of this wavelength (nm), 0..1 each (Dan Bruton's 1996 table).
+/// Colour of light of this wavelength (nm), 0..1 each (Dan Bruton's 1996 table).
 /// Ultraviolet comes back as dim violet and infrared as dim dark red, so they still show.
 pub fn wavelength_rgb(nm: f64) -> [f32; 3] {
     if nm < 380.0 { return [0.35, 0.2, 0.6]; }

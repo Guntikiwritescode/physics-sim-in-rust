@@ -41,8 +41,7 @@ pub const SOLIDS: [SolidInfo; 7] = [
     SolidInfo { key: "LiCl", name: "lithium chloride", atoms: ["Li", "Cl"], structure: Structure::RockSalt, basis: "DZVP-GTH", a_lda: 4.986, a0: 4.9776, ecut: 500.0 },
     SolidInfo { key: "NaF", name: "sodium fluoride", atoms: ["Na", "F"], structure: Structure::RockSalt, basis: "DZVP-GTH", a_lda: 4.507, a0: 4.5165, ecut: 500.0 },
     SolidInfo { key: "NaCl", name: "sodium chloride (salt)", atoms: ["Na", "Cl"], structure: Structure::RockSalt, basis: "DZVP-GTH", a_lda: 5.484, a0: 5.4887, ecut: 500.0 },
-    // Diamond and zinc-blende crystals with the MOLOPT basis sets hartree ships for Ga, Ge and As
-    // (made for PBE; used here with the LDA pseudopotentials).
+    // Diamond and zinc-blende crystals with the MOLOPT basis sets hartree ships for Ga, Ge and As.
     SolidInfo { key: "Ge", name: "germanium", atoms: ["Ge", "Ge"], structure: Structure::Diamond, basis: "DZVP-MOLOPT-PBE-GTH", a_lda: 5.632, a0: 5.632, ecut: 200.0 },
     SolidInfo { key: "GaAs", name: "gallium arsenide", atoms: ["Ga", "As"], structure: Structure::Diamond, basis: "DZVP-MOLOPT-PBE-GTH", a_lda: 5.616, a0: 5.616, ecut: 500.0 },
 ];

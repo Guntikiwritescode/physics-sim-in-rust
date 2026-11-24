@@ -1,6 +1,6 @@
 # rust-black-hole
 
-Rust versions of kavan010's black hole, gravity and atoms sims, in one window with two tabs.
+A black hole, gravity and atoms simulator in Rust, in one window with two tabs.
 
 ![the black hole tab](screenshot.png)
 
@@ -16,12 +16,8 @@ F1 shows the controls. `cargo run --release -- --scene atoms` starts on the Atom
 
 `cargo test --release` runs the tests.
 
-## Credits
+## Data
 
-- kavan010's sims: https://github.com/kavan010/black_hole, https://github.com/kavan010/gravity_sim, https://github.com/kavan010/Atoms
-- Light paths near the black hole: Chan et al. 2018, GRay2, https://arxiv.org/abs/1706.07062
-- Picture clean-up: Schied et al. 2017, Spatiotemporal Variance-Guided Filtering
-- Molecules and crystals are solved with hartree: https://crates.io/crates/hartree
-- Atom data: NIST SRD 141 (https://www.nist.gov/pml/atomic-reference-data-electronic-structure-calculations) and the NIST Atomic Spectra Database (https://physics.nist.gov/asd)
-- Molecule data: NIST CCCBDB, https://cccbdb.nist.gov
-- Crystal data: Haas, Tran and Blaha, Phys. Rev. B 79, 085104 (2009)
+- Atoms: NIST SRD 141 (https://www.nist.gov/pml/atomic-reference-data-electronic-structure-calculations) and the NIST Atomic Spectra Database (https://physics.nist.gov/asd)
+- Molecules: NIST CCCBDB, https://cccbdb.nist.gov
+- Crystals: Haas, Tran and Blaha, Phys. Rev. B 79, 085104 (2009)

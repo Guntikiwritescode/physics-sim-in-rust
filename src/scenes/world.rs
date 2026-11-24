@@ -21,7 +21,7 @@ const SUN_RADIANCE: f32 = 1.2e5;
 /// Outer edge of a black hole's gas disk, in Schwarzschild radii.
 const DISK_OUT: f64 = 14.0;
 
-pub const SETUPS: [&str; 5] = ["(unused)", "Black hole and two stars", "Gravity disk (2,000 rocks)", "Eclipse", "kavan's gravity scene"];
+pub const SETUPS: [&str; 5] = ["(unused)", "Black hole and two stars", "Gravity disk (2,000 rocks)", "Eclipse", "Star and two planets"];
 pub const SETUP_ORDER: [usize; 4] = [1, 2, 4, 3];
 
 #[derive(Clone, Copy, PartialEq, Debug)]
@@ -73,7 +73,7 @@ struct Mark { follow: Follow, rel: DVec3, dist: f64, dir: DVec3 }
 
 fn temp_rgb(t: f64) -> [f32; 3] {
     // Colour of a hot surface (blackbody) as RGB, normalised to the brightest channel. Fit by
-    // Tanner Helland (2012) to Mitchell Charity's blackbody table; good to a few percent.
+    // Tanner Helland (2012) to Mitchell Charity's blackbody table.
     let t = (t / 100.0).clamp(10.0, 400.0);
     let r = if t <= 66.0 { 255.0 } else { 329.698727446 * (t - 60.0).powf(-0.1332047592) };
     let g = if t <= 66.0 { 99.4708025861 * t.ln() - 161.1195681661 } else { 288.1221695283 * (t - 60.0).powf(-0.0755148492) };
@@ -127,7 +127,7 @@ impl WorldScene {
     }
 
     fn make(setup: usize) -> (World, Camera, DVec3, Follow) {
-        // gravity_sim's camera places, km -> m, times the true-size scale.
+        // camera places in km -> m, times the true-size scale.
         let k = 1e3 * world::GRAV_SCALE;
         let grav = |w: World, pos: DVec3, target: DVec3| {
             let cam = Camera { pos: pos * k, rot: look_at(pos * k, target * k, DVec3::Y), fov_y: 50f64.to_radians() };
@@ -494,8 +494,8 @@ impl Scene for WorldScene {
         "A black hole (Kerr, spin 0.9) with stars and rocks at true size. Everything pulls everything \
         (Newton); light bends near the hole (exact Kerr paths). Throw rocks in (1, or the panel) and watch the \
         hole grow and its spin change; stars that come too close are torn apart by tides; bodies that hit \
-        merge, bounce or shatter. Other start setups: 2,000 rocks round kavan's star (they merge into planets), \
-        an eclipse (a planet's shadow on two moons; starts paused) and kavan's own gravity scene.\n\
+        merge, bounce or shatter. Other start setups: 2,000 rocks round a star (they merge into planets), \
+        an eclipse (a planet's shadow on two moons; starts paused) and a star with two planets.\n\
         Keys: 1 throw a rock, P pause, [ / ] time slower / faster, R restart, Home start view."
     }
     fn key(&mut self, k: KeyCode, down: bool) {

@@ -16,7 +16,7 @@ struct U {
 @group(0) @binding(1) var<storage, read> pts: array<vec4<f32>>;   // r, theta, phi0, colour value
 @group(0) @binding(2) var<storage, read> old_pts: array<vec4<f32>>; // the orbital before the last jump
 
-// kavan010/Atoms's "heat/fire" colour stops: black, purple, red, orange, yellow, white.
+// "Heat/fire" colour stops: black, purple, red, orange, yellow, white.
 fn fire(v0: f32) -> vec3<f32> {
     let v = clamp(v0, 0.0, 1.0) * 5.0;
     let i = min(i32(v), 4);

@@ -1,4 +1,4 @@
-//! Barnes-Hut tree for gravity (Barnes & Hut 1986, Nature 324, 446). Far groups of bodies pull
+//! Barnes-Hut tree for gravity. Far groups of bodies pull
 //! as one mass plus its quadrupole; near ones pull one by one. A group counts as far when its box
 //! size s and the distance d from its centre of mass satisfy s / (d - offset) < THETA, where offset is
 //! how far the centre of mass sits from the box centre (keeps the test safe for lopsided boxes).

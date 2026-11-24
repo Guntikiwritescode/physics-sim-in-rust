@@ -1,5 +1,4 @@
-// Clean-up of the one-path-per-pixel picture (after SVGF: Schied et al. 2017, "Spatiotemporal
-// Variance-Guided Filtering"), in four steps:
+// Clean-up of the one-path-per-pixel picture, in four steps:
 // 1. cs_temporal: reuse last frame's light. Each pixel finds where its surface was on the last
 //    picture (camera move + object move), checks it is the same surface (same object, distance,
 //    direction), and blends. Also keeps the average brightness and brightness squared, which tell
@@ -111,7 +110,7 @@ fn cs_temporal(@builtin(global_invocation_id) gid: vec3<u32>) {
         // the history against, and it moves and changes on its own: kept unchecked, it leaves
         // trails and rings for seconds. So the old value is first
         // pulled into this frame's local range, mean +- 1.25 standard deviations of the 3x3 round
-        // the pixel (variance clipping, Salvi 2016), and at most the last 32 frames count
+        // the pixel (variance clipping), and at most the last 32 frames count
         // (still view).
         var e1 = vec3(0.0); var e2 = vec3(0.0); var ec = 0.0;
         for (var y = -1; y <= 1; y = y + 1) {
@@ -237,9 +236,7 @@ fn cs_compose(@builtin(global_invocation_id) gid: vec3<u32>) {
 // spots of every window pixel. This pass keeps a window-size picture (its history) and each frame
 // adds the rays that landed near each window pixel: where a ray landed close, it counts a lot;
 // where none did, the history (moved with the camera and objects) is kept. The history is pulled
-// into the colour range of the nearby rays so moving things don't leave trails. This is the usual
-// "temporal upscaling" (Karis 2014, "High Quality Temporal Supersampling", SIGGRAPH course; Yang
-// et al. 2020, "A Survey of Temporal Antialiasing Techniques").
+// into the colour range of the nearby rays so moving things don't leave trails.
 @group(0) @binding(1) var<storage, read> t_objs: array<Obj>;
 @group(0) @binding(2) var x_geo: texture_2d<f32>;
 @group(0) @binding(3) var x_col: texture_2d<f32>;
@@ -263,7 +260,7 @@ fn osize() -> vec2<i32> { return vec2<i32>(i32(u.up.x), i32(u.up.y)); }
 // Last frame's window picture at point p (window pixels), Catmull-Rom (stays sharp when it is
 // moved a fraction of a pixel every frame; plain blending blurs a little more each frame). Done
 // with 5 blended reads instead of 16 single ones (the four corner pixels, which carry the least
-// weight, are left out; Jimenez 2016, "Filmic SMAA", SIGGRAPH course).
+// weight, are left out).
 fn history(p: vec2<f32>) -> vec3<f32> {
     let ts = vec2<f32>(osize());
     let sp = p - 0.5;

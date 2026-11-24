@@ -1,4 +1,4 @@
-//! Atoms tab (from kavan010/Atoms, atom_realtime.cpp): millions of sampled electron
+//! Atoms tab: millions of sampled electron
 //! positions of a hydrogen orbital, moving along the probability current. "Show" also draws the
 //! 118 elements, the molecules and the crystals the same way (dots from their solvers' densities,
 //! clouds.rs).
@@ -162,7 +162,7 @@ impl Draw {
 pub struct Other {
     /// What it is, for the panel and status line.
     pub title: String,
-    /// More lines for the panel (method, checks, what is left out).
+    /// More lines for the panel.
     pub notes: Vec<String>,
     pub dot_r: f64,
     /// Drift: an element's single orbital with m != 0 carries a current like hydrogen's; else 0.
