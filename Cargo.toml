@@ -1,0 +1,19 @@
+[package]
+name = "rust_black_hole"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wgpu = "=29.0.3"
+winit = "=0.30.13"
+pollster = "0.4"
+bytemuck = { version = "1", features = ["derive"] }
+glam = "=0.34.3"
+rayon = "1"
+egui = "0.35.0"
+egui-wgpu = "0.35.0"
+egui-winit = "0.35.0"
+hartree = "=0.2.3"
+
+[dev-dependencies]
+naga = { version = "=29.0.4", features = ["wgsl-in"] }
