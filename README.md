@@ -8,8 +8,8 @@ A black hole, gravity, and atoms simulator in Rust.
 
 You need Rust (https://rustup.rs).
 
-    git clone https://github.com/Guntikiwritescode/rust-black-hole
-    cd rust-black-hole
+    git clone https://github.com/Guntikiwritescode/physics-sim-in-rust
+    physics-sim-in-rust
     cargo run --release
 
 F1 shows the controls. `cargo run --release -- --scene atoms` starts on the Atoms tab.
